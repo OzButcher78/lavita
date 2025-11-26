@@ -8,10 +8,10 @@ interface NavbarProps {
   toggleLanguage: () => void;
   content: LocalizedContent['nav'];
   onNavigate: (id: string) => void;
-  onBook: () => void;
+  onBook: () => void; // kannst du später aus dem Typ entfernen, wenn du das Modal ganz rausnimmst
 }
 
-const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNavigate, onBook }) => {
+const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -26,6 +26,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNaviga
     { label: content.gallery, id: 'gallery' },
     { label: content.location, id: 'location' },
   ];
+
+  const mailtoHref =
+    "mailto:info@pdr.hr?subject=La%20Vita%20Accommodation%20Inquiry";
 
   return (
     <motion.nav
@@ -72,8 +75,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNaviga
             {lang}
           </button>
 
-          <button
-            onClick={onBook}
+          {/* Desktop Book Button now as mailto link */}
+          <a
+            href={mailtoHref}
             className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
               isScrolled 
                 ? 'bg-brand-dark text-white hover:bg-brand-accent' 
@@ -81,15 +85,15 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNaviga
             }`}
           >
             {content.book}
-          </button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-4 md:hidden z-50">
-           <button
+          <button
             onClick={toggleLanguage}
             className={`flex items-center gap-1 text-xs font-bold uppercase tracking-wider ${
-               isMobileMenuOpen ? 'text-brand-dark' : (isScrolled ? 'text-brand-dark' : 'text-brand-dark')
+              isMobileMenuOpen ? 'text-brand-dark' : (isScrolled ? 'text-brand-dark' : 'text-brand-dark')
             }`}
           >
             {lang}
@@ -124,15 +128,15 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNaviga
                   {link.label}
                 </button>
               ))}
-              <button
-                onClick={() => {
-                  onBook();
-                  setIsMobileMenuOpen(false);
-                }}
+
+              {/* Mobile Book Button now as mailto link */}
+              <a
+                href={mailtoHref}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="mt-8 px-8 py-3 bg-brand-dark text-white rounded-full text-lg font-medium"
               >
                 {content.book}
-              </button>
+              </a>
             </motion.div>
           )}
         </AnimatePresence>
