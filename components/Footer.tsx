@@ -9,7 +9,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ content }) => {
   const mailtoHref =
-    "mailto:info@lavita.hr?subject=La%20Vita%20Accommodation%20Inquiry";
+    "mailto:info@pdr.hr?subject=La%20Vita%20Accommodation%20Inquiry";
 
   return (
     <footer className="bg-brand-dark text-stone-300 py-20 border-t border-brand-accent/20">
@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                 <span className="p-2 bg-white/5 rounded-full group-hover:bg-brand-accent group-hover:text-white transition-colors">
                   <Mail size={16} />
                 </span>
-                <span>info@lavita.hr</span>
+                <span>info@pdr.hr</span>
               </a>
             </div>
           </div>
