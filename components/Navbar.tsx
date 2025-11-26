@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLanguage, content, onNaviga
   ];
 
   const mailtoHref =
-    "mailto:info@pdr.hr?subject=La%20Vita%20Accommodation%20Inquiry";
+    "mailto:lavita@pdr.hr?subject=La%20Vita%20Accommodation%20Inquiry";
 
   return (
     <motion.nav
