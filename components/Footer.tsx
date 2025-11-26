@@ -4,10 +4,13 @@ import { LocalizedContent } from '../types';
 
 interface FooterProps {
   content: LocalizedContent['footer'];
-  onContact: () => void;
+  onContact: () => void; // no longer used, but kept for compatibility
 }
 
-const Footer: React.FC<FooterProps> = ({ content, onContact }) => {
+const Footer: React.FC<FooterProps> = ({ content }) => {
+  const mailtoHref =
+    "mailto:info@lavita.hr?subject=La%20Vita%20Accommodation%20Inquiry";
+
   return (
     <footer className="bg-brand-dark text-stone-300 py-20 border-t border-brand-accent/20">
       <div className="max-w-7xl mx-auto px-6">
@@ -28,15 +31,15 @@ const Footer: React.FC<FooterProps> = ({ content, onContact }) => {
               {content.contact_title}
             </h4>
             <div className="flex flex-col gap-4 font-light">
-              <button 
-                onClick={onContact} 
+              <a 
+                href={mailtoHref}
                 className="flex items-center gap-3 hover:text-brand-accent transition-colors group text-left"
               >
                 <span className="p-2 bg-white/5 rounded-full group-hover:bg-brand-accent group-hover:text-white transition-colors">
                   <Mail size={16} />
                 </span>
-                <span>info@pdr.hr</span>
-              </button>
+                <span>info@lavita.hr</span>
+              </a>
             </div>
           </div>
 
